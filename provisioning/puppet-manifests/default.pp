@@ -8,12 +8,12 @@ Package {
 
 # PHP install configuration
 class { 'php':
+    package             => 'php-fpm',
     service             => 'php-fpm',
     service_autorestart => true,
 }
 
 # PHP modules
-php::module { 'fpm': }
 php::module { 'opcache': }
 php::module { 'pdo': }
 php::module { 'pgsql': }
