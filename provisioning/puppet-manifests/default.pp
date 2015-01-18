@@ -9,6 +9,10 @@ Package {
 # PHP install configuration
 class { 'php':
     package             => 'php-fpm',
+
+    # Re-enable once https://github.com/example42/puppet-php/pull/81 gets merged...
+    #install_options     => [{'--enablerepo' => 'remi-php55'}],
+
     service             => 'php-fpm',
     service_autorestart => true,
 }

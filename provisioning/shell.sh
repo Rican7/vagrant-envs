@@ -38,5 +38,7 @@ rpm -ivh https://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.
 # Download the Remi repo (http://rpms.famillecollet.com/)
 rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 
-# Enable the Remi base "remi", "remi-php55", and "remi-php56" repos to be queried by default
-yum-config-manager --enable remi,remi-php55,remi-php56
+# Enable the Remi base "remi" repo to be queried by default
+yum-config-manager --enable remi
+#yum-config-manager --enable remi-php55 # PHP 5.5
+#yum-config-manager --enable remi-php56 # PHP 5.6
