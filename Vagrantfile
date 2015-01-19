@@ -31,7 +31,8 @@ Vagrant.configure(2) do |config|
 
   # Puppet provisioning configuration
   config.vm.provision "puppet" do |puppet|
-    puppet.manifests_path = "provisioning/puppet-manifests"
+    puppet.manifests_path = "provisioning/puppet/manifests"
+    puppet.module_path = "provisioning/puppet/modules"
   end
 
   # Create a private network, which allows host-only access to the machine
