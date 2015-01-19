@@ -22,10 +22,6 @@ rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-el-6.noarch.rpm
 # Install puppet via Yum
 yum -y install puppet
 
-# Install necessary modules
-puppet module install example42-php --version 2.0.x
-puppet module install jfryman-nginx
-
 
 
 #############################
