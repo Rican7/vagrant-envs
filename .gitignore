@@ -1,2 +1,5 @@
 ### Raw vagrant data ###
 .vagrant
+
+### Puppet lock file, since this is a shared/OS lib ###
+Puppetfile.lock
