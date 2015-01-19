@@ -6,6 +6,9 @@ Package {
     allow_virtual => true,
 }
 
+$php_application_service = 'php-fpm'
+$php_modules = ['opcache', 'pdo', 'pgsql', 'mbstring', 'mcrypt', 'bcmath', 'gmp']
+
 # PHP install configuration
 class { 'php':
     package             => 'php-fpm',
@@ -13,21 +16,15 @@ class { 'php':
     # Re-enable once https://github.com/example42/puppet-php/pull/81 gets merged...
     #install_options     => [{'--enablerepo' => 'remi-php55'}],
 
-    service             => 'php-fpm',
+    service             => $php_application_service,
     service_autorestart => true,
 }
 
 # PHP modules
-php::module { 'opcache': }
-php::module { 'pdo': }
-php::module { 'pgsql': }
-php::module { 'mbstring': }
-php::module { 'mcrypt': }
-php::module { 'bcmath': }
-php::module { 'gmp': }
+php::module { $php_modules: }
 
 # PHP-FPM service
-service { 'php-fpm':
+service { $php_application_service:
     ensure => running,
 }
 
@@ -35,6 +32,6 @@ service { 'php-fpm':
 class { 'nginx': }
 
 # Nginx virtual hosts
-nginx::resource::vhost { 'appnamehere.pls':
+nginx::resource::vhost { 'app.dev':
     www_root => '/vagrant/',
 }
