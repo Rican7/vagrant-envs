@@ -1,5 +1,8 @@
 ### Raw vagrant data ###
 .vagrant
 
+### Puppet modules ###
+provisioning/puppet/modules
+
 ### Puppet lock file, since this is a shared/OS lib ###
 Puppetfile.lock
