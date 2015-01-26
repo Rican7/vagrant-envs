@@ -1,8 +1,11 @@
 ### Raw vagrant data ###
 .vagrant
 
-### Puppet modules ###
-provisioning/puppet/modules
+### Gem lock file, since this is a shared/OS lib ###
+Gemfile.lock
 
 ### Puppet lock file, since this is a shared/OS lib ###
 Puppetfile.lock
+
+### Puppet modules ###
+provisioning/puppet/modules
