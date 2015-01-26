@@ -13,15 +13,17 @@ $php_modules = ['opcache', 'pdo', 'pgsql', 'mbstring', 'mcrypt', 'bcmath', 'gmp'
 class { 'php':
     package             => 'php-fpm',
 
-    # Re-enable once https://github.com/example42/puppet-php/pull/81 gets merged...
-    #install_options     => [{'--enablerepo' => 'remi-php55'}],
+    install_options     => [{'--enablerepo' => 'remi-php55'}],
 
     service             => $php_application_service,
     service_autorestart => true,
 }
 
 # PHP modules
-php::module { $php_modules: }
+php::module { $php_modules:
+
+    install_options     => [{'--enablerepo' => 'remi-php55'}],
+}
 
 # PHP-FPM service
 service { $php_application_service:
