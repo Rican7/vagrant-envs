@@ -1,5 +1,15 @@
 # Nginx puppet configuration
 
+# The Nginx user
+user { 'nginx':
+    ensure  => present,
+    system  => true,
+    home    => '/var/cache/nginx',
+    shell   => '/sbin/nologin',
+    comment => 'Nginx webserver user',
+    groups  => ['webserver'],
+}
+
 # Main config
 class { 'nginx': }
 

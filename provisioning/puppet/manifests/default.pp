@@ -8,3 +8,9 @@ Package {
 
 # Define our PHP service
 $php_application_service = 'php-fpm'
+
+# Create some webserver groups and users
+group { 'webserver':
+    ensure => present,
+    system => true,
+}

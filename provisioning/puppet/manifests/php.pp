@@ -5,6 +5,16 @@ $php_modules = ['opcache', 'pdo', 'pgsql', 'mbstring', 'mcrypt', 'bcmath', 'gmp'
 $php_install_options = [{'--enablerepo' => 'remi-php55'}]
 
 
+# The PHP user
+user { 'php':
+    ensure  => present,
+    system  => true,
+    home    => '/srv/www',
+    shell   => '/sbin/nologin',
+    comment => 'PHP (FPM) application user',
+    groups  => ['webserver'],
+}
+
 # PHP install configuration
 class { 'php':
     package             => 'php-fpm',
