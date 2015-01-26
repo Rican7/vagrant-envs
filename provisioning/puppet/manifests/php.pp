@@ -14,8 +14,8 @@ class { 'php':
     service             => $php_application_service,
     service_autorestart => true,
 
-    template           => "/vagrant/provisioning/puppet/conf/php.ini.erb",
-    options            => {
+    template            => "/vagrant/provisioning/puppet/conf/php.ini.erb",
+    options             => {
         expose_php     => "Off",
         display_errors => "Off",
     },
@@ -37,6 +37,20 @@ php::conf { 'opcache.ini':
     template     => "/vagrant/provisioning/puppet/conf/php-mods/opcache.ini.erb",
     options_hash => {
         enable => 1,
+    },
+}
+
+# PHP-FPM configuration
+php::conf { 'php-fpm.conf':
+    path         => "/etc/php-fpm.conf",
+    template     => "/vagrant/provisioning/puppet/conf/php-fpm.conf.erb",
+    options_hash => {
+    },
+}
+php::conf { 'fpm-pool/www.conf':
+    path         => "/etc/php-fpm.d/www.conf",
+    template     => "/vagrant/provisioning/puppet/conf/php-fpm-pools/www.conf.erb",
+    options_hash => {
     },
 }
 
