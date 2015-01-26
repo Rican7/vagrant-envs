@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+###############
+## Variables ##
+###############
+
+# Path to our ruby profile script
+RUBY_PROFILE_SCRIPT_PATH="/etc/profile.d/ruby193.sh"
+
+
+
 ##############################
 ## Base OS-level operations ##
 ##############################
@@ -24,7 +33,6 @@ rpm -ivh https://www.softwarecollections.org/en/scls/rhscl/ruby193/epel-6-x86_64
 yum -y install ruby193-ruby ruby193-ruby-devel
 
 # Set the new ruby version as the default for all users
-RUBY_PROFILE_SCRIPT_PATH="/etc/profile.d/ruby193.sh"
 echo "source /opt/rh/ruby193/enable" > $RUBY_PROFILE_SCRIPT_PATH
 echo 'export PATH="/opt/rh/ruby193/root/usr/local/bin:$PATH"' >> $RUBY_PROFILE_SCRIPT_PATH
 
