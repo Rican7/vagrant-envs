@@ -26,6 +26,14 @@ php::module { $php_modules:
     install_options     => $php_install_options,
 }
 
+# PHP modules configuration
+php::conf { 'date.ini':
+    template     => "/vagrant/provisioning/puppet/conf/php-mods/date.ini.erb",
+    options_hash => {
+        timezone => "UTC",
+    },
+}
+
 # PHP-FPM service
 service { $php_application_service:
     ensure => running,
