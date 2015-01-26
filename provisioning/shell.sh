@@ -8,7 +8,7 @@
 yum -y update
 
 # Install `yum-utils` and `scl-utils`
-yum -y install yum-utils scl-utils
+yum -y install yum-utils scl-utils gcc openssl-devel
 
 
 
@@ -21,10 +21,15 @@ yum -y install yum-utils scl-utils
 rpm -ivh https://www.softwarecollections.org/en/scls/rhscl/ruby193/epel-6-x86_64/download/rhscl-ruby193-epel-6-x86_64.noarch.rpm
 
 # Install ruby via Yum
-yum -y install ruby193-ruby
+yum -y install ruby193-ruby ruby193-ruby-devel
 
-# Run a new bash instance with the new ruby version
-scl enable ruby193 bash
+# Set the new ruby version as the default for all users
+RUBY_PROFILE_SCRIPT_PATH="/etc/profile.d/ruby193.sh"
+echo "source /opt/rh/ruby193/enable" > $RUBY_PROFILE_SCRIPT_PATH
+echo 'export PATH="/opt/rh/ruby193/root/usr/local/bin:$PATH"' >> $RUBY_PROFILE_SCRIPT_PATH
+
+# Source our new profile
+source $RUBY_PROFILE_SCRIPT_PATH
 
 
 
@@ -32,11 +37,14 @@ scl enable ruby193 bash
 ## Puppet Install ##
 ####################
 
-# Download and enable the Puppet Labs repo
-rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-el-6.noarch.rpm
+# Install bundler
+gem install bundler
 
-# Install puppet via Yum
-yum -y install puppet
+# Install our gems
+(cd /vagrant/provisioning && exec bundle install)
+
+# Install our puppet modules
+(cd /vagrant/provisioning/puppet && exec bundle exec librarian-puppet install)
 
 
 
