@@ -13,6 +13,7 @@ user { 'php':
     shell   => '/sbin/nologin',
     comment => 'PHP (FPM) application user',
     groups  => ['webserver'],
+    require => Group['webserver'],
 }
 
 # PHP install configuration
@@ -66,5 +67,6 @@ php::conf { 'fpm-pool/www.conf':
 
 # PHP-FPM service
 service { $php_application_service:
-    ensure => running,
+    ensure  => running,
+    require => User['php'],
 }
