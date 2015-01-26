@@ -1,7 +1,6 @@
 [Date]
 ; Defines the default timezone used by the date functions
 ; http://php.net/date.timezone
-;date.timezone =
 date.timezone = <%= @options_hash['timezone'] || 'UTC' %>
 
 ; http://php.net/date.default-latitude
@@ -15,4 +14,3 @@ date.timezone = <%= @options_hash['timezone'] || 'UTC' %>
 
 ; http://php.net/date.sunset-zenith
 ;date.sunset_zenith = 90.583333
-

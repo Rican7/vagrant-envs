@@ -33,6 +33,12 @@ php::conf { 'date.ini':
         timezone => "UTC",
     },
 }
+php::conf { 'opcache.ini':
+    template     => "/vagrant/provisioning/puppet/conf/php-mods/opcache.ini.erb",
+    options_hash => {
+        enable => 1,
+    },
+}
 
 # PHP-FPM service
 service { $php_application_service:
