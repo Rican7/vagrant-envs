@@ -16,8 +16,13 @@ RUBY_PROFILE_SCRIPT_PATH="/etc/profile.d/ruby193.sh"
 # Update core packages via Yum
 yum -y update
 
-# Install `yum-utils` and `scl-utils`
-yum -y install yum-utils scl-utils gcc openssl-devel
+# Install some packages
+yum -y install \
+    yum-utils \
+    scl-utils \
+    git \
+    gcc \
+    openssl-devel
 
 
 
