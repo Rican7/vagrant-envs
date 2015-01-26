@@ -7,4 +7,3 @@ class { 'nginx': }
 nginx::resource::vhost { 'app.dev':
     www_root => '/vagrant/',
 }
-
