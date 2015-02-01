@@ -1,23 +1,29 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# All Vagrant configuration is done below. The "2" in Vagrant.configure
-# configures the configuration version (we support older styles for
-# backwards compatibility). Please don't change it unless you know what
-# you're doing.
+#
+# Custom modules
+#
+
+# OS-level operations
+module OS
+  # Check if the host OS is Windows
+  # http://stackoverflow.com/a/171011/852382
+  def OS.is_windows?
+    nil != (RUBY_PLATFORM =~ /cygwin|mswin|mingw|bccwin|wince|emx/)
+  end
+end
+
+
+# https://docs.vagrantup.com.
 Vagrant.configure(2) do |config|
-  # The most common configuration options are documented and commented below.
-  # For a complete reference, please see the online documentation at
-  # https://docs.vagrantup.com.
 
-  # Every Vagrant development environment requires a box. You can search for
-  # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "chef/centos-6.6"
+  config.vm.box_check_update = true
 
-  # Disable automatic box update checking. If you disable this, then
-  # boxes will only be checked for updates when the user runs
-  # `vagrant box outdated`. This is not recommended.
-  # config.vm.box_check_update = false
+  if OS.is_windows? and not Vagrant.has_plugin?('vagrant-vbguest')
+    Kernel.abort('Windows host detected without "vagrant-vbguest" installed. Use "vagrant plugin install vagrant-vbguest" to install.')
+  end
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -80,4 +86,5 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get update
   #   sudo apt-get install -y apache2
   # SHELL
+
 end
