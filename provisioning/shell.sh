@@ -57,7 +57,7 @@ gem install bundler
 (cd /vagrant/provisioning && exec bundle install)
 
 # Install our puppet modules
-(cd /vagrant/provisioning/puppet && exec bundle exec librarian-puppet install)
+(cd /vagrant/provisioning/puppet && exec librarian-puppet install)
 
 
 
