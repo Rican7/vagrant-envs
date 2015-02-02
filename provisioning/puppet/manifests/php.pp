@@ -25,10 +25,10 @@ class { 'php':
     service             => $php_application_service,
     service_autorestart => true,
 
-    template            => "/vagrant/provisioning/puppet/conf/php.ini.erb",
+    template            => '/vagrant/provisioning/puppet/conf/php.ini.erb',
     options             => {
-        expose_php     => "Off",
-        display_errors => "Off",
+        expose_php     => 'Off',
+        display_errors => 'Off',
     },
 }
 
@@ -39,14 +39,14 @@ php::module { $php_modules:
 
 # PHP modules configuration
 php::conf { 'date.ini':
-    template     => "/vagrant/provisioning/puppet/conf/php-mods/date.ini.erb",
+    template     => '/vagrant/provisioning/puppet/conf/php-mods/date.ini.erb',
     notify       => Service[$php_application_service],
     options_hash => {
         timezone => 'UTC',
     },
 }
 php::conf { 'opcache.ini':
-    template     => "/vagrant/provisioning/puppet/conf/php-mods/opcache.ini.erb",
+    template     => '/vagrant/provisioning/puppet/conf/php-mods/opcache.ini.erb',
     notify       => Service[$php_application_service],
     options_hash => {
         enable => 1,
@@ -55,15 +55,15 @@ php::conf { 'opcache.ini':
 
 # PHP-FPM configuration
 php::conf { 'php-fpm.conf':
-    path         => "/etc/php-fpm.conf",
-    template     => "/vagrant/provisioning/puppet/conf/php-fpm.conf.erb",
+    path         => '/etc/php-fpm.conf',
+    template     => '/vagrant/provisioning/puppet/conf/php-fpm.conf.erb',
     notify       => Service[$php_application_service],
     options_hash => {
     },
 }
 php::conf { 'fpm-pool/www.conf':
-    path         => "/etc/php-fpm.d/www.conf",
-    template     => "/vagrant/provisioning/puppet/conf/php-fpm-pools/www.conf.erb",
+    path         => '/etc/php-fpm.d/www.conf',
+    template     => '/vagrant/provisioning/puppet/conf/php-fpm-pools/www.conf.erb',
     notify       => Service[$php_application_service],
     options_hash => {
     },
