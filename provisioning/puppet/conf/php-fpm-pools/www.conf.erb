@@ -176,6 +176,7 @@ rlimit_core = <%= @options_hash['rlimit_core'] || 0 %>
 ;       (error_log, sessions.save_path, ...).
 ; Default Value: not set
 ;chroot =
+chroot = <%= @options_hash['chroot'] || '' %>
 
 ; Chdir to this directory at the start. This value must be an absolute path.
 ; Default Value: current directory or / when chroot
