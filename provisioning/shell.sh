@@ -22,6 +22,7 @@ yum -y install \
     scl-utils \
     git \
     gcc \
+    kernel-devel \
     openssl-devel
 
 
