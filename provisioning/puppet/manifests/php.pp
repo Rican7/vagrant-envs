@@ -40,6 +40,7 @@ php::module { $php_modules:
 # PHP modules configuration
 php::conf { 'date.ini':
     template     => '/vagrant/provisioning/puppet/conf/php-mods/date.ini.erb',
+    require      => Package['php'],
     notify       => Service[$php_application_service],
     options_hash => {
         timezone => 'UTC',
@@ -47,6 +48,7 @@ php::conf { 'date.ini':
 }
 php::conf { 'opcache.ini':
     template     => '/vagrant/provisioning/puppet/conf/php-mods/opcache.ini.erb',
+    require      => Package['php'],
     notify       => Service[$php_application_service],
     options_hash => {
         enable => 1,
@@ -57,6 +59,7 @@ php::conf { 'opcache.ini':
 php::conf { 'php-fpm.conf':
     path         => '/etc/php-fpm.conf',
     template     => '/vagrant/provisioning/puppet/conf/php-fpm.conf.erb',
+    require      => Package['php'],
     notify       => Service[$php_application_service],
     options_hash => {
     },
@@ -64,6 +67,7 @@ php::conf { 'php-fpm.conf':
 php::conf { 'fpm-pool/www.conf':
     path         => '/etc/php-fpm.d/www.conf',
     template     => '/vagrant/provisioning/puppet/conf/php-fpm-pools/www.conf.erb',
+    require      => Package['php'],
     notify       => Service[$php_application_service],
     options_hash => {
     },
