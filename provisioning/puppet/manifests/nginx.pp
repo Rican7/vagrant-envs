@@ -12,7 +12,9 @@ user { 'nginx':
 }
 
 # Main config
-class { 'nginx': }
+class { 'nginx':
+    require => User['nginx'],
+}
 
 # Nginx virtual hosts
 nginx::resource::vhost { 'app.dev':
