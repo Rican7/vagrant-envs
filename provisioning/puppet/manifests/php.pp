@@ -76,5 +76,8 @@ php::conf { 'fpm-pool/www.conf':
 # PHP-FPM service
 service { $php_application_service:
     ensure  => running,
-    require => [User['php'], Package['php']],
+    require => [
+        User['php'],
+        Package['php'],
+    ],
 }
