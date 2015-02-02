@@ -8,6 +8,7 @@ user { 'nginx':
     shell   => '/sbin/nologin',
     comment => 'Nginx webserver user',
     groups  => ['webserver'],
+    require => Group['webserver'],
 }
 
 # Main config
