@@ -34,6 +34,9 @@ yum -y install \
     ruby-devel \
     rubygems
 
+# Temporarily disable SELinux
+# Some of the gem/bundle installs fail with SELinux in enforce mode
+setenforce 0
 
 
 
