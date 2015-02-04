@@ -4,3 +4,4 @@ mod 'example42-php',
     :git => 'https://github.com/example42/puppet-php.git',
     :ref => 'master'
 mod 'jfryman-nginx'
+mod 'thomasvandoren-redis'
